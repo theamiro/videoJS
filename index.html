@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Video on Demand</title>
+		<link href="https://vjs.zencdn.net/7.14.3/video-js.css" rel="stylesheet" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/videojs-resolution-switcher-vjs7@1.0.0/videojs-resolution-switcher.css" />
+		<style>
+			.vjs-big-play-button {
+				position: absolute !important;
+				top: 50% !important;
+				left: 50% !important;
+				transform: translate(-50%, -50%) !important;
+				background-color: red !important;
+				border: 0 !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+					<video class="video-js" preload="auto" width="853" height="480" controls data-setup="{}" id="first-video" muted></video>
+				</div>
+			</div>
+		</div>
+		<script src="https://vjs.zencdn.net/7.14.3/video.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/videojs-resolution-switcher-vjs7@1.0.0/videojs-resolution-switcher.js"></script>
+		<script>
+			videojs(
+				"first-video",
+				{
+					controls: true,
+					autoplay: true,
+					preload: "metadata",
+					poster: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/images/BigBuckBunny.jpg",
+					plugins: {
+						videoJsResolutionSwitcher: {
+							default: "auto",
+							dynamicLabel: true,
+						},
+					},
+				},
+				function () {
+					var player = this
+					player.updateSrc([
+						{
+							src: "./videos/kenya-1080p.mp4",
+							type: "video/mp4",
+							label: "1080p",
+							res: "1080p",
+						},
+						{
+							src: "./videos/kenya-720p.mp4",
+							type: "video/mp4",
+							label: "720p",
+							res: "720p",
+						},
+						{
+							src: "./videos/kenya-360p.mp4",
+							type: "video/mp4",
+							label: "360p",
+							res: "360p",
+						},
+					])
+				}
+			)
+		</script>
+	</body>
+</html>
