@@ -41,7 +41,9 @@
 				},
 			})
 			player.hlsQualitySelector()
-			console.log(player.currentTime())
+			if (player.pause() === true) {
+				console.log(player.currentTime())
+			}
 		</script>
 	</body>
 </html>
