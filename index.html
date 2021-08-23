@@ -55,15 +55,12 @@
 				return ""
 			}
 
-			function checkCookie() {
-				let user = getCookie("username")
-				if (user != "") {
-					alert("Welcome again " + user)
+			function checkCookie(identifier) {
+				let cookie = getCookie(identifier)
+				if (cookie != "") {
+					return cookie
 				} else {
-					user = prompt("Please enter your name:", "")
-					if (user != "" && user != null) {
-						setCookie("username", user, 365)
-					}
+					return ""
 				}
 			}
 			var player = videojs("my_video_1", {
@@ -75,8 +72,14 @@
 			})
 			player.hlsQualitySelector()
 
+			window.onload = function () {
+				if (checkCookie(player.currentSrc()) != "") {
+					player.currentTime = checkCookie(player.currentSrc()).valueOf
+					console.log(checkCookie(player.currentSrc()))
+				}
+			}
 			window.onunload = function () {
-				player.currentTime()
+				setCookie(player.currentSrc(), player.currentTime(), 33)
 			}
 		</script>
 	</body>
