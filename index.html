@@ -72,12 +72,6 @@
 			})
 			player.hlsQualitySelector()
 
-			window.onload = function () {
-				if (checkCookie(player.currentSrc()) != "") {
-					player.currentTime = checkCookie(player.currentSrc()).valueOf
-					console.log(checkCookie(player.currentSrc()))
-				}
-			}
 			window.onunload = function () {
 				setCookie(player.currentSrc(), player.currentTime(), 33)
 			}
