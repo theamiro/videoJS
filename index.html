@@ -73,9 +73,9 @@
 					},
 				},
 				function () {
-					if (checkCookie(player.currentSrc() != "")) {
+					if (checkCookie(this.currentSrc()) {
 						this.on("loadedmetadata", function () {
-							this.currentTime(getCookie(player.currentSrc()))
+							this.currentTime(getCookie(this.currentSrc()))
 						})
 					}
 				}
