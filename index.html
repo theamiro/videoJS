@@ -63,13 +63,21 @@
 					return ""
 				}
 			}
-			var player = videojs("my_video_1", {
-				html5: {
-					hls: {
-						overrideNative: true,
+			var player = videojs(
+				"my_video_1",
+				{
+					html5: {
+						hls: {
+							overrideNative: true,
+						},
 					},
 				},
-			})
+				function () {
+					this.on("loadedmetadata", function () {
+						this.currentTime(500)
+					})
+				}
+			)
 			player.hlsQualitySelector()
 
 			window.onunload = function () {
